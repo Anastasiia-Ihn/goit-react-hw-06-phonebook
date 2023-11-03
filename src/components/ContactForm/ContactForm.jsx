@@ -29,32 +29,22 @@ export const ContactForm = () => {
   const listContacts = useSelector(state=> state.contacts.contacts)
 
 
-  // const addContact = newContact => {
-  //       const isElem = contacts.find(contact => {
-  //         return contact.name === newContact.name;
-  //       });
-  //       if (isElem) {
-  //         alert(`${newContact.name} is already in contacts`);
-  //         return;
-  //       }
+    const onSubmit = (value, form) => {
+      console.log(value);
+      const { name, number } = value;
 
-  //       return setContacts(prevState => [
-  //         ...prevState,
-  //         { ...newContact, id: nanoid() },
-  //       ]);
-  //     };
-
-  const onSubmit = (value, form) => {
-    console.log(value);
   
-    const isElem = listContacts.find(contact => (contact.name === value.name)); 
+    const isElem = listContacts.find(contact => (contact.name === name)); 
 
     if (isElem) {
-      alert(`${value.name} is already in contacts`);
+      alert(`${name} is already in contacts`);
       return;
-    }
+      }
 
-    dispatch(addContact(value)
+      const id = nanoid();
+      const addedElCont ={ id, name, number }
+
+    dispatch(addContact(addedElCont)
 
     // dispatch(addContact({
     //   id: nanoid(),
