@@ -26,31 +26,29 @@ const initialValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const listContacts = useSelector(state=> state.contacts.contacts)
+  const listContacts = useSelector(state => state.contacts.contacts);
 
+  const onSubmit = (value, form) => {
+    const { name, number } = value;
 
-    const onSubmit = (value, form) => {
-      console.log(value);
-      const { name, number } = value;
-
-  
-    const isElem = listContacts.find(contact => (contact.name === name)); 
+    const isElem = listContacts.find(contact => contact.name === name);
 
     if (isElem) {
       alert(`${name} is already in contacts`);
       return;
-      }
+    }
 
-      const id = nanoid();
-      const addedElCont ={ id, name, number }
+    const id = nanoid();
+    const addedElCont = { id, name, number };
 
-    dispatch(addContact(addedElCont)
+    dispatch(
+      addContact(addedElCont)
 
-    // dispatch(addContact({
-    //   id: nanoid(),
-    //   name,
-    //   number
-    // })
+      // dispatch(addContact({
+      //   id: nanoid(),
+      //   name,
+      //   number
+      // })
     );
 
     form.resetForm();

@@ -3,25 +3,26 @@ import { FormInput } from './Filter.styled';
 import { setFilter } from 'redux/filtersSlice';
 
 export const Filter = () => {
-  const filter = useSelector(state => state.filter.filters) ?? "";
-  console.log(filter);
-  
+  const filter = useSelector(state => state.filter.filters) ?? '';
   const dispatch = useDispatch();
 
-  const changeFilter =  evt => dispatch(setFilter(evt.target.value))
-  
+  const changeFilter = evt => dispatch(setFilter(evt.target.value));
 
   return (
     <FormInput>
       <label>
         Find contacts by name
-        <input type="text" name="input"   value={filter}
-                onChange={changeFilter}  />
+        <input
+          type="text"
+          name="input"
+          value={filter}
+          onChange={changeFilter}
+        />
       </label>
     </FormInput>
   );
 };
-// listContacts={contacts} filter={filter} onChange={changeFilter} 
+// listContacts={contacts} filter={filter} onChange={changeFilter}
 
 // const changeFilter = evt => setFilter(evt.currentTarget.value);
 

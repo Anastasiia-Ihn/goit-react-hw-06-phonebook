@@ -3,23 +3,28 @@ import { BtnDeleteContact, List, ListItem } from './ContactList.styled';
 import { delContact } from 'redux/contactsSlice';
 
 export const ContactList = () => {
+  const listContacts = useSelector(state => state.contacts.contacts);
+  const filter = useSelector(state => state.filter.filters);
 
   const dispatch = useDispatch();
 
-  const listContacts = useSelector(state=> state.contacts.contacts)
-  console.log(listContacts);
-  
+  const getFilterList = () => {
+    const lowerWord = filter.toLowerCase();
+    return listContacts.filter(contact => {
+      return contact.name.toLowerCase().includes(lowerWord);
+    });
+  };
+  const filterList = getFilterList();
 
   // const deleteContact = idContact =>
   //   dispatch(delContact(idContact))
   //     setContacts(prevState =>
   //       prevState.filter(contact => contact.id !== idContact)
-      // );
-  
+  // );
 
   return (
     <List>
-      {listContacts.map(({ id, name, number }) => (
+      {filterList?.map(({ id, name, number }) => (
         <ListItem key={id}>
           <p>{name}</p>
           <p>{number}</p>
@@ -31,8 +36,6 @@ export const ContactList = () => {
     </List>
   );
 };
-
-
 
 // import { BtnDeleteContact, List, ListItem } from './ContactList.styled';
 
