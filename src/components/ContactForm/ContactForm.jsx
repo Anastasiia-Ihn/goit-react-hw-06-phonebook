@@ -38,17 +38,18 @@ export const ContactForm = () => {
       return;
     }
 
-    const id = nanoid();
-    const addedElCont = { id, name, number };
+    // const id = nanoid();
+    // const addedElCont = { id, name, number };
 
+    //     dispatch(
+    //       addContact(addedElCont)
+    //  );
     dispatch(
-      addContact(addedElCont)
-
-      // dispatch(addContact({
-      //   id: nanoid(),
-      //   name,
-      //   number
-      // })
+      addContact({
+        id: nanoid(),
+        name,
+        number,
+      })
     );
 
     form.resetForm();
